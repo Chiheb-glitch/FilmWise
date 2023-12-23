@@ -39,6 +39,7 @@ dependencies:
 
   bootstrap_icons: ^1.10.2
   settings_ui: ^2.0.2
+  floating_frosted_bottom_bar: ^0.0.1
   provider:
 
 dev_dependencies:

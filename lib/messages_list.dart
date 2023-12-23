@@ -53,7 +53,7 @@ class messages_list extends StatelessWidget {
                     },
                     icon: Icon(
                       Icons.arrow_back_ios_new,
-                      color: Color.fromARGB(255, 129, 12, 168),
+                      color: Theme.of(context).colorScheme.primary,
                     )),
               ),
             ],
@@ -63,8 +63,6 @@ class messages_list extends StatelessWidget {
             child: Form(
               key: _formKey1,
               child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   TextFormField(
                     validator: (value) {
@@ -102,6 +100,7 @@ class messages_list extends StatelessWidget {
             ),
           ),
           Container(
+            margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
             padding: EdgeInsets.only(bottom: 15),
             decoration: BoxDecoration(
               border: Border(
@@ -111,7 +110,6 @@ class messages_list extends StatelessWidget {
                 ),
               ),
             ),
-            width: (SizeConfig.screenWidth! * 0.9),
             child: Column(children: [
               SizedBox(
                 height: 15,
@@ -140,8 +138,8 @@ class messages_list extends StatelessWidget {
                     width: 15,
                   ),
                   Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         'Salim',
@@ -154,40 +152,140 @@ class messages_list extends StatelessWidget {
                           fontSize: 14, // Set the font size
                         ),
                       ),
-                      Row(
-                        children: [
-                          Text(
-                            'Winek ech fama',
-                            style: TextStyle(
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .primary, // Set the text color
-                              fontFamily: 'Poppins', // Set the font family
-                              fontWeight:
-                                  FontWeight.w200, // Set the font weight
-                              fontSize: MediaQuery.of(context).size.width >= 493
-                                  ? 12
-                                  : 8, // Set the font size
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.7,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Winek ech fama',
+                              style: TextStyle(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .primary, // Set the text color
+                                fontFamily: 'Poppins', // Set the font family
+                                fontWeight:
+                                    FontWeight.w200, // Set the font weight
+                                fontSize:
+                                    MediaQuery.of(context).size.width >= 493
+                                        ? 12
+                                        : 8, // Set the font size
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.35,
-                          ),
-                          Text(
-                            '20/12/2023',
-                            style: TextStyle(
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .primary, // Set the text color
-                              fontFamily: 'Poppins', // Set the font family
-                              fontWeight:
-                                  FontWeight.w100, // Set the font weight
-                              fontSize: MediaQuery.of(context).size.width >= 493
-                                  ? 11
-                                  : 6, // Set the font size
+                            Text(
+                              '20/12/2023',
+                              style: TextStyle(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .primary, // Set the text color
+                                fontFamily: 'Poppins', // Set the font family
+                                fontWeight:
+                                    FontWeight.w100, // Set the font weight
+                                fontSize:
+                                    MediaQuery.of(context).size.width >= 493
+                                        ? 11
+                                        : 6, // Set the font size
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              )
+            ]),
+          ),
+          Container(
+            margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+            padding: EdgeInsets.only(bottom: 15),
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  color: Theme.of(context).colorScheme.primary,
+                  width: 1.0,
+                ),
+              ),
+            ),
+            child: Column(children: [
+              SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    width: 50.0,
+                    height: 50.0,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        width: 0.0,
+                        color: Colors.white,
+                      ),
+                      image: DecorationImage(
+                        image: NetworkImage(
+                          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0aEjACt2jj8i3I0n3u2rHnWrk9igVej4LTA&usqp=CAU',
+                        ),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 15,
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Salim',
+                        style: TextStyle(
+                          color: Theme.of(context)
+                              .colorScheme
+                              .primary, // S.et the text color
+                          fontFamily: 'Poppins', // Set the font family
+                          fontWeight: FontWeight.w800, // Set the font weight
+                          fontSize: 14, // Set the font size
+                        ),
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.7,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Winek ech fama',
+                              style: TextStyle(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .primary, // Set the text color
+                                fontFamily: 'Poppins', // Set the font family
+                                fontWeight:
+                                    FontWeight.w200, // Set the font weight
+                                fontSize:
+                                    MediaQuery.of(context).size.width >= 493
+                                        ? 12
+                                        : 8, // Set the font size
+                              ),
+                            ),
+                            Text(
+                              '20/12/2023',
+                              style: TextStyle(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .primary, // Set the text color
+                                fontFamily: 'Poppins', // Set the font family
+                                fontWeight:
+                                    FontWeight.w100, // Set the font weight
+                                fontSize:
+                                    MediaQuery.of(context).size.width >= 493
+                                        ? 11
+                                        : 6, // Set the font size
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   )

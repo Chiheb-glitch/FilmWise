@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_dashboard/dashboard.dart';
+import 'package:responsive_dashboard/find.dart';
 import 'package:responsive_dashboard/login.dart';
+import 'package:responsive_dashboard/profile.dart';
 import 'package:responsive_dashboard/recofilm.dart';
 import 'package:responsive_dashboard/singin.dart';
 import 'package:responsive_dashboard/style/colors.dart';
@@ -25,7 +27,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: Provider.of<ThemeProvider>(context).themeData,
-      home: Login(),
+      home: Dashboard(),
     );
   }
 }

@@ -425,6 +425,108 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                     ),
                                   ],
                                 ),
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      PageRouteBuilder(
+                                        pageBuilder: (context, animation,
+                                                secondaryAnimation) =>
+                                            messages_list(),
+                                        transitionsBuilder: (context, animation,
+                                            secondaryAnimation, child) {
+                                          var begin = Offset(-1.0,
+                                              0); // Change the begin offset to start from the left
+                                          var end = Offset.zero;
+                                          var tween =
+                                              Tween(begin: begin, end: end);
+                                          var offsetAnimation =
+                                              animation.drive(tween);
+
+                                          return SlideTransition(
+                                            position: offsetAnimation,
+                                            child: child,
+                                          );
+                                        },
+                                      ),
+                                    );
+                                  },
+                                  child: Container(
+                                    child: Column(
+                                      children: [
+                                        Stack(
+                                          children: [
+                                            Container(
+                                                padding: EdgeInsets.fromLTRB(
+                                                    3, 0, 3, 0),
+                                                margin:
+                                                    EdgeInsets.only(right: 0),
+                                                child: Icon(
+                                                  BootstrapIcons
+                                                      .rocket_takeoff_fill,
+                                                  color: Color.fromARGB(
+                                                      255, 121, 121, 121),
+                                                  size: 22,
+                                                )),
+                                            SizedBox(
+                                                width:
+                                                    (SizeConfig.screenWidth!! *
+                                                            10) /
+                                                        500),
+                                            Positioned(
+                                              top: 0,
+                                              right: 0,
+                                              child: Container(
+                                                width: 7,
+                                                height: 7,
+                                                decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                  color: Colors
+                                                      .red, // Set the desired circle color
+                                                ),
+                                                child: Center(
+                                                  child: Text(
+                                                    '',
+                                                    style: TextStyle(
+                                                      color: Color.fromARGB(
+                                                          255,
+                                                          116,
+                                                          116,
+                                                          116), // Set the text color
+                                                      fontFamily:
+                                                          'Poppins', // Set the font family
+                                                      fontWeight: FontWeight
+                                                          .normal, // Set the font weight
+                                                      fontSize:
+                                                          7, // Set the font size
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 1,
+                                        ),
+                                        Text(
+                                          'Community',
+                                          style: TextStyle(
+                                            color: Color.fromARGB(255, 116, 116,
+                                                116), // Set the text color
+                                            fontFamily:
+                                                'Poppins', // Set the font family
+                                            fontWeight: FontWeight
+                                                .w600, // Set the font weight
+                                            fontSize:
+                                                (SizeConfig.screenWidth!! * 7) /
+                                                    384, // Set the font size
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
                                 Row(
                                   children: [
                                     Container(
