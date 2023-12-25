@@ -67,7 +67,7 @@ class _ProfilePageState extends State<ProfilePage>
             child: FrostedBottomBar(
               width: MediaQuery.of(context).size.width * 0.95,
               borderRadius: BorderRadius.all(Radius.circular(50)),
-              bottomBarColor: const Color.fromARGB(255, 0, 122, 204),
+              bottomBarColor: const Color.fromARGB(255, 26, 40, 50),
               child: TabBar(
                 labelColor: Colors.amber,
                 indicatorPadding: const EdgeInsets.fromLTRB(6, 0, 6, 0),
@@ -888,15 +888,6 @@ class TabsIcon extends StatelessWidget {
                   icons,
                   color: color,
                   size: 30,
-                ),
-                Text(
-                  text,
-                  style: TextStyle(
-                    color: color, // Set the text color
-                    fontFamily: 'Poppins', // Set the font family
-                    fontWeight: FontWeight.normal, // Set the font weight
-                    fontSize: 12, // Set the font size
-                  ),
                 ),
               ],
             ),
