@@ -292,7 +292,15 @@ class _ProfilePageState extends State<ProfilePage>
                                       ),
                                     ),
                                     Container(
-                                      margin: EdgeInsets.fromLTRB(50, 0, 50, 0),
+                                      margin: EdgeInsets.fromLTRB(
+                                          (MediaQuery.of(context).size.width *
+                                                  20) /
+                                              450,
+                                          0,
+                                          (MediaQuery.of(context).size.width *
+                                                  20) /
+                                              450,
+                                          0),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
