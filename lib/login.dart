@@ -34,7 +34,7 @@ class _Login extends State<Login> with TickerProviderStateMixin {
 
   int _currentPage = 0;
 
-  final PageController _pageController = PageController();
+  var _pageController = PageController(initialPage: 0);
   bool _isPasswordVisible = false;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final GlobalKey<FormState> _formKey1 = GlobalKey<FormState>();
@@ -94,7 +94,7 @@ class _Login extends State<Login> with TickerProviderStateMixin {
                             AnimatedContainer(
                               padding: EdgeInsets.only(
                                   bottom: (MediaQuery.of(context).size.height *
-                                          100) /
+                                          130) /
                                       792),
                               duration: Duration(microseconds: 1),
                               decoration: BoxDecoration(
@@ -106,7 +106,7 @@ class _Login extends State<Login> with TickerProviderStateMixin {
                                 ),
                               ),
                               height:
-                                  (MediaQuery.of(context).size.height * 350) /
+                                  (MediaQuery.of(context).size.height * 480) /
                                       792,
                             ),
                             Stack(
@@ -172,434 +172,74 @@ class _Login extends State<Login> with TickerProviderStateMixin {
                       ),
                     ],
                   ),
-                  Expanded(
-                    child: PageView(
-                      allowImplicitScrolling: false,
-                      scrollDirection: Axis.horizontal,
-                      controller: _pageController,
-                      onPageChanged: (int page) {
-                        setState(() {
-                          _currentPage = page;
-                        });
-                      },
-                      children: [
-                        ListView(
-                          children: [
-                            SizedBox(
-                              height:
-                                  (MediaQuery.of(context).size.height * 240) /
-                                      792,
-                            ),
-                            Center(
-                              child: Container(
-                                margin: EdgeInsets.fromLTRB(25, 0, 25, 25),
-                                child: Form(
-                                  key: _formKey,
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      SizedBox(
-                                        height: 8,
-                                      ),
-                                      Text(
-                                        "SIGN IN AND ",
-                                        style: TextStyle(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .primary, // Set the text color
-                                          fontFamily:
-                                              'Poppins', // Set the font family
-                                          fontWeight: FontWeight
-                                              .w200, // Set the font weight
-                                          fontSize: 17,
-                                          // Set the font size
-                                        ),
-                                      ),
-                                      Text(
-                                        "UNLOCK YOUR INNER FILM BUFF",
-                                        style: TextStyle(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .primary, // Set the text color
-                                          fontFamily:
-                                              'Poppins', // Set the font family
-                                          fontWeight: FontWeight
-                                              .w200, // Set the font weight
-                                          fontSize: 17,
-                                          // Set the font size
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 8,
-                                      ),
-                                      Container(
-                                        color: Color.fromARGB(250, 30, 30, 30),
-                                        height: 1,
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.9,
-                                      ),
-                                      SizedBox(
-                                        height: 14,
-                                      ),
-                                      TextFormField(
-                                        validator: (value) {
-                                          // add email validation
-                                          if (value == null || value.isEmpty) {
-                                            return 'Please enter some text';
-                                          }
-
-                                          bool emailValid = RegExp(
-                                                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                                              .hasMatch(value);
-                                          if (!emailValid) {
-                                            return 'Please enter a valid email';
-                                          }
-
-                                          return null;
-                                        },
-                                        decoration: InputDecoration(
-                                          labelText: 'Email',
-                                          hintText: 'Enter youremail',
-                                          prefixIcon: Icon(
-                                            Icons.email_outlined,
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .primary,
-                                          ),
-                                          border: OutlineInputBorder(),
-                                          labelStyle: TextStyle(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .primary),
-
-                                          // Customize the border color
-                                          focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                                color: Theme.of(context)
-                                                    .colorScheme
-                                                    .primary),
-                                          ),
-                                          enabledBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                                color: Theme.of(context)
-                                                    .colorScheme
-                                                    .primary),
-                                          ),
-                                        ),
-                                        style: TextStyle(
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .primary),
-                                      ),
-                                      SizedBox(height: 16),
-                                      TextFormField(
-                                        style: TextStyle(
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .primary),
-                                        validator: (value) {
-                                          if (value == null || value.isEmpty) {
-                                            return 'Please enter some text';
-                                          }
-
-                                          if (value.length < 6) {
-                                            return 'Password must be at least 6 characters';
-                                          }
-                                          return null;
-                                        },
-                                        obscureText: !_isPasswordVisible,
-                                        decoration: InputDecoration(
-                                          labelText: 'Password',
-                                          hintText: 'Enter your password',
-                                          prefixIcon: Icon(
-                                            Icons.lock_outline_rounded,
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .primary,
-                                          ),
-                                          border: const OutlineInputBorder(),
-                                          suffixIcon: IconButton(
-                                            icon: Icon(
-                                              _isPasswordVisible
-                                                  ? Icons.visibility_off
-                                                  : Icons.visibility,
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .primary,
-                                            ),
-                                            onPressed: () {
-                                              setState(() {
-                                                _isPasswordVisible =
-                                                    !_isPasswordVisible;
-                                              });
-                                            },
-                                          ),
-                                          labelStyle: TextStyle(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .primary),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                                color: Theme.of(context)
-                                                    .colorScheme
-                                                    .primary),
-                                          ),
-                                          enabledBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                                color: Theme.of(context)
-                                                    .colorScheme
-                                                    .primary),
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(height: 16),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: [
-                                          Text(
-                                            "Forget Password?",
-                                            style: TextStyle(
-                                              decoration:
-                                                  TextDecoration.underline,
-                                              decorationThickness: 2.0,
-                                              color: Color.fromARGB(255, 0, 122,
-                                                  204), // Set the text color
-                                              fontFamily:
-                                                  'Poppins', // Set the font family
-                                              fontWeight: FontWeight
-                                                  .w500, // Set the font weight
-                                              fontSize: 17,
-
-                                              // Set the font size
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(height: 16),
-                                      SizedBox(
-                                        width: double.infinity,
-                                        child: ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                            backgroundColor: Color.fromARGB(
-                                                255, 12, 85, 155),
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(4)),
-                                          ),
-                                          child: Padding(
-                                            padding: EdgeInsets.all(10.0),
-                                            child: Text(
-                                              'LOGIN',
-                                              style: TextStyle(
-                                                  color: Theme.of(context)
-                                                      .colorScheme
-                                                      .primary,
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ),
-                                          onPressed: () {
-                                            if (_formKey.currentState
-                                                    ?.validate() ??
-                                                false) {
-                                              /// do something
-                                              if (_currentPage < 1) {
-                                                Navigator.push(
-                                                  context,
-                                                  PageRouteBuilder(
-                                                    pageBuilder: (context,
-                                                            animation,
-                                                            secondaryAnimation) =>
-                                                        Dashboard(),
-                                                    transitionsBuilder:
-                                                        (context,
-                                                            animation,
-                                                            secondaryAnimation,
-                                                            child) {
-                                                      var begin = Offset(-1.0,
-                                                          0); // Change the begin offset to start from the left
-                                                      var end = Offset.zero;
-                                                      var tween = Tween(
-                                                          begin: begin,
-                                                          end: end);
-                                                      var offsetAnimation =
-                                                          animation
-                                                              .drive(tween);
-
-                                                      return SlideTransition(
-                                                        position:
-                                                            offsetAnimation,
-                                                        child: child,
-                                                      );
-                                                    },
-                                                  ),
-                                                );
-                                              }
-                                            }
-                                          },
-                                        ),
-                                      ),
-                                      SizedBox(height: 16),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            "Don’t have an account?",
-                                            style: TextStyle(
-                                              decorationThickness: 2.0,
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .primary, // Set the text color
-                                              fontFamily:
-                                                  'Poppins', // Set the font family
-                                              fontWeight: FontWeight
-                                                  .w500, // Set the font weight
-                                              fontSize: 17,
-
-                                              // Set the font size
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: 10,
-                                          ),
-                                          GestureDetector(
-                                            onTap: () {
-                                              if (_currentPage < 1) {
-                                                _toggleImage();
-                                                _pageController.nextPage(
-                                                  duration: Duration(
-                                                      milliseconds: 500),
-                                                  curve: Curves.easeInOut,
-                                                );
-                                              }
-                                            },
-                                            child: Text(
-                                              "Signup",
-                                              style: TextStyle(
-                                                decoration:
-                                                    TextDecoration.underline,
-                                                decorationThickness: 2.0,
-                                                color: Color.fromARGB(
-                                                    255,
-                                                    0,
-                                                    122,
-                                                    204), // Set the text color
-                                                fontFamily:
-                                                    'Poppins', // Set the font family
-                                                fontWeight: FontWeight
-                                                    .w500, // Set the font weight
-                                                fontSize: 17,
-
-                                                // Set the font size
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        ListView(
-                          children: [
-                            SizedBox(
-                              height:
-                                  (MediaQuery.of(context).size.height * 240) /
-                                      792,
-                            ),
-                            Container(
-                              margin: EdgeInsets.fromLTRB(25, 0, 25, 0),
+                  PageView(
+                    allowImplicitScrolling: false,
+                    scrollDirection: Axis.horizontal,
+                    controller: _pageController,
+                    onPageChanged: (int page) {
+                      setState(() {
+                        _currentPage = page;
+                      });
+                    },
+                    children: [
+                      ListView(
+                        children: [
+                          SizedBox(
+                            height: (MediaQuery.of(context).size.height * 220) /
+                                792,
+                          ),
+                          Center(
+                            child: Container(
+                              margin: EdgeInsets.fromLTRB(25, 0, 25, 25),
                               child: Form(
-                                key: _formKey1,
+                                key: _formKey,
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    SizedBox(height: 16),
                                     SizedBox(
                                       height: 8,
                                     ),
                                     Text(
                                       "SIGN IN AND ",
                                       style: TextStyle(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .primary,
-                                        fontFamily: 'Poppins',
-                                        fontWeight: FontWeight.w200,
-                                        fontSize: 17,
+                                        color: Color.fromARGB(200, 217, 217,
+                                            217), // Set the text color
+                                        // Set the text color
+                                        fontFamily:
+                                            'Poppins', // Set the font family
+                                        fontWeight: FontWeight
+                                            .w400, // Set the font weight
+                                        fontSize: 12,
+                                        // Set the font size
                                       ),
                                     ),
                                     Text(
                                       "UNLOCK YOUR INNER FILM BUFF",
                                       style: TextStyle(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .primary,
-                                        fontFamily: 'Poppins',
-                                        fontWeight: FontWeight.w200,
-                                        fontSize: 17,
+                                        color: Color.fromARGB(200, 217, 217,
+                                            217), // Set the text color
+// Set the text color
+                                        fontFamily:
+                                            'Poppins', // Set the font family
+                                        fontWeight: FontWeight
+                                            .w400, // Set the font weight
+                                        fontSize: 12,
+                                        // Set the font size
                                       ),
                                     ),
                                     SizedBox(
                                       height: 8,
                                     ),
                                     Container(
-                                      color: Color.fromARGB(113, 117, 117, 117),
+                                      color: Color.fromARGB(250, 6, 94, 153),
                                       height: 1,
-                                      width: double.infinity,
+                                      width: MediaQuery.of(context).size.width *
+                                          0.9,
                                     ),
                                     SizedBox(
                                       height: 14,
                                     ),
-                                    TextFormField(
-                                      validator: (value) {
-                                        // add email validation
-
-                                        return null;
-                                      },
-                                      decoration: InputDecoration(
-                                        labelText: 'Username',
-                                        hintText: 'Enter your username',
-                                        prefixIcon: Icon(
-                                          Icons.email_outlined,
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .primary,
-                                        ),
-                                        border: OutlineInputBorder(),
-                                        labelStyle: TextStyle(
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .primary),
-
-                                        // Customize the border color
-                                        focusedBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .primary),
-                                        ),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .primary),
-                                        ),
-                                      ),
-                                      style: TextStyle(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .primary),
-                                    ),
-                                    SizedBox(height: 16),
                                     TextFormField(
                                       validator: (value) {
                                         // add email validation
@@ -618,7 +258,7 @@ class _Login extends State<Login> with TickerProviderStateMixin {
                                       },
                                       decoration: InputDecoration(
                                         labelText: 'Email',
-                                        hintText: 'Enter your email',
+                                        hintText: 'Enter youremail',
                                         prefixIcon: Icon(
                                           Icons.email_outlined,
                                           color: Theme.of(context)
@@ -640,9 +280,13 @@ class _Login extends State<Login> with TickerProviderStateMixin {
                                         ),
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .primary),
+                                            color: Color.fromARGB(255, 217, 217,
+                                                217), // Change the color to your desired color
+                                          ),
+                                        ),
+                                        contentPadding: EdgeInsets.symmetric(
+                                          vertical:
+                                              15.0, // Adjust the vertical padding as needed
                                         ),
                                       ),
                                       style: TextStyle(
@@ -668,6 +312,10 @@ class _Login extends State<Login> with TickerProviderStateMixin {
                                       },
                                       obscureText: !_isPasswordVisible,
                                       decoration: InputDecoration(
+                                        contentPadding: EdgeInsets.symmetric(
+                                          vertical:
+                                              15.0, // Adjust the vertical padding as needed
+                                        ),
                                         labelText: 'Password',
                                         hintText: 'Enter your password',
                                         prefixIcon: Icon(
@@ -676,7 +324,18 @@ class _Login extends State<Login> with TickerProviderStateMixin {
                                               .colorScheme
                                               .primary,
                                         ),
-                                        border: const OutlineInputBorder(),
+                                        border: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Color.fromARGB(255, 0, 217,
+                                                217), // Change the color to your desired color
+                                          ),
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Color.fromARGB(255, 217, 217,
+                                                217), // Change the color to your desired color
+                                          ),
+                                        ),
                                         suffixIcon: IconButton(
                                           icon: Icon(
                                             _isPasswordVisible
@@ -698,12 +357,6 @@ class _Login extends State<Login> with TickerProviderStateMixin {
                                                 .colorScheme
                                                 .primary),
                                         focusedBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .primary),
-                                        ),
-                                        enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                               color: Theme.of(context)
                                                   .colorScheme
@@ -712,65 +365,27 @@ class _Login extends State<Login> with TickerProviderStateMixin {
                                       ),
                                     ),
                                     SizedBox(height: 16),
-                                    TextFormField(
-                                      style: TextStyle(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .primary),
-                                      validator: (value) {
-                                        if (value == null || value.isEmpty) {
-                                          return 'Please enter some text';
-                                        }
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Text(
+                                          "Forget Password?",
+                                          style: TextStyle(
+                                            decoration:
+                                                TextDecoration.underline,
+                                            decorationThickness: 2.0,
+                                            color: Color.fromARGB(255, 12, 85,
+                                                155), // Set the text color
+                                            fontFamily:
+                                                'Poppins', // Set the font family
+                                            fontWeight: FontWeight
+                                                .w500, // Set the font weight
+                                            fontSize: 14,
 
-                                        if (value.length < 6) {
-                                          return 'Password must be at least 6 characters';
-                                        }
-                                        return null;
-                                      },
-                                      obscureText: !_isPasswordVisible,
-                                      decoration: InputDecoration(
-                                        labelText: ' Repeat Password',
-                                        hintText: 'Enter your  repeat password',
-                                        prefixIcon: Icon(
-                                          Icons.lock_outline_rounded,
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .primary,
-                                        ),
-                                        border: const OutlineInputBorder(),
-                                        suffixIcon: IconButton(
-                                          icon: Icon(
-                                            _isPasswordVisible
-                                                ? Icons.visibility_off
-                                                : Icons.visibility,
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .primary,
+                                            // Set the font size
                                           ),
-                                          onPressed: () {
-                                            setState(() {
-                                              _isPasswordVisible =
-                                                  !_isPasswordVisible;
-                                            });
-                                          },
                                         ),
-                                        labelStyle: TextStyle(
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .primary),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .primary),
-                                        ),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .primary),
-                                        ),
-                                      ),
+                                      ],
                                     ),
                                     SizedBox(height: 16),
                                     SizedBox(
@@ -778,7 +393,7 @@ class _Login extends State<Login> with TickerProviderStateMixin {
                                       child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
                                           backgroundColor:
-                                              Color.fromARGB(255, 0, 122, 204),
+                                              Color.fromARGB(255, 12, 85, 155),
                                           shape: RoundedRectangleBorder(
                                               borderRadius:
                                                   BorderRadius.circular(4)),
@@ -786,7 +401,7 @@ class _Login extends State<Login> with TickerProviderStateMixin {
                                         child: Padding(
                                           padding: EdgeInsets.all(10.0),
                                           child: Text(
-                                            'CREATE',
+                                            'LOGIN',
                                             style: TextStyle(
                                                 color: Theme.of(context)
                                                     .colorScheme
@@ -801,46 +416,66 @@ class _Login extends State<Login> with TickerProviderStateMixin {
                                               false) {
                                             /// do something
                                             if (_currentPage < 1) {
-                                              _pageController.nextPage(
-                                                duration:
-                                                    Duration(milliseconds: 500),
-                                                curve: Curves.easeInOut,
+                                              Navigator.push(
+                                                context,
+                                                PageRouteBuilder(
+                                                  pageBuilder: (context,
+                                                          animation,
+                                                          secondaryAnimation) =>
+                                                      Dashboard(),
+                                                  transitionsBuilder: (context,
+                                                      animation,
+                                                      secondaryAnimation,
+                                                      child) {
+                                                    var begin = Offset(-1.0,
+                                                        0); // Change the begin offset to start from the left
+                                                    var end = Offset.zero;
+                                                    var tween = Tween(
+                                                        begin: begin, end: end);
+                                                    var offsetAnimation =
+                                                        animation.drive(tween);
+
+                                                    return SlideTransition(
+                                                      position: offsetAnimation,
+                                                      child: child,
+                                                    );
+                                                  },
+                                                ),
                                               );
                                             }
                                           }
                                         },
                                       ),
                                     ),
-                                    SizedBox(height: 16),
+                                    SizedBox(height: 15),
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
                                         Text(
-                                          "You have an account?",
+                                          "Don’t have an account?",
                                           style: TextStyle(
                                             decorationThickness: 2.0,
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .primary, // Set the text color
+                                            color: Color.fromARGB(255, 217, 217,
+                                                217), // Set the text color
+                                            // Set the text color
                                             fontFamily:
                                                 'Poppins', // Set the font family
                                             fontWeight: FontWeight
                                                 .w500, // Set the font weight
-                                            fontSize: 17,
+                                            fontSize: 13,
 
                                             // Set the font size
                                           ),
                                         ),
                                         SizedBox(
-                                          width: 10,
+                                          width: 5,
                                         ),
                                         GestureDetector(
                                           onTap: () {
-                                            _toggleImage();
-
-                                            if (_currentPage >= 1) {
-                                              _pageController.previousPage(
+                                            if (_currentPage < 1) {
+                                              _toggleImage();
+                                              _pageController.nextPage(
                                                 duration:
                                                     Duration(milliseconds: 500),
                                                 curve: Curves.easeInOut,
@@ -848,18 +483,19 @@ class _Login extends State<Login> with TickerProviderStateMixin {
                                             }
                                           },
                                           child: Text(
-                                            "Login",
+                                            "Signup",
                                             style: TextStyle(
                                               decoration:
                                                   TextDecoration.underline,
                                               decorationThickness: 2.0,
-                                              color: Color.fromARGB(255, 0, 122,
-                                                  204), // Set the text color
+                                              color: Color.fromARGB(255, 12, 85,
+                                                  155), // Set the text color
+                                              // Set the text color
                                               fontFamily:
                                                   'Poppins', // Set the font family
                                               fontWeight: FontWeight
                                                   .w500, // Set the font weight
-                                              fontSize: 17,
+                                              fontSize: 13,
 
                                               // Set the font size
                                             ),
@@ -871,10 +507,418 @@ class _Login extends State<Login> with TickerProviderStateMixin {
                                 ),
                               ),
                             ),
-                          ],
-                        ),
-                      ],
-                    ),
+                          ),
+                        ],
+                      ),
+                      ListView(
+                        children: [
+                          SizedBox(
+                            height: (MediaQuery.of(context).size.height * 240) /
+                                792,
+                          ),
+                          Container(
+                            margin: EdgeInsets.fromLTRB(25, 0, 25, 0),
+                            child: Form(
+                              key: _formKey1,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SizedBox(height: 16),
+                                  SizedBox(
+                                    height: 8,
+                                  ),
+                                  Text(
+                                    "SIGN IN AND ",
+                                    style: TextStyle(
+                                      color: Color.fromARGB(200, 217, 217,
+                                          217), // Set the text color
+                                      // Set the text color
+                                      fontFamily:
+                                          'Poppins', // Set the font family
+                                      fontWeight: FontWeight
+                                          .w400, // Set the font weight
+                                      fontSize: 12,
+                                      // Set the font size
+                                    ),
+                                  ),
+                                  Text(
+                                    "UNLOCK YOUR INNER FILM BUFF",
+                                    style: TextStyle(
+                                      color: Color.fromARGB(200, 217, 217,
+                                          217), // Set the text color
+                                      // Set the text color
+                                      fontFamily:
+                                          'Poppins', // Set the font family
+                                      fontWeight: FontWeight
+                                          .w400, // Set the font weight
+                                      fontSize: 12,
+                                      // Set the font size
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 8,
+                                  ),
+                                  Container(
+                                    color: Color.fromARGB(250, 6, 94, 153),
+                                    height: 1,
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.9,
+                                  ),
+                                  SizedBox(
+                                    height: 14,
+                                  ),
+                                  TextFormField(
+                                    validator: (value) {
+                                      // add email validation
+
+                                      return null;
+                                    },
+                                    decoration: InputDecoration(
+                                      labelText: 'Username',
+                                      hintText: 'Enter your username',
+                                      prefixIcon: Icon(
+                                        Icons.email_outlined,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary,
+                                      ),
+                                      border: OutlineInputBorder(),
+                                      labelStyle: TextStyle(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primary),
+
+                                      // Customize the border color
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary),
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary),
+                                      ),
+                                      contentPadding: EdgeInsets.symmetric(
+                                        vertical:
+                                            15.0, // Adjust the vertical padding as needed
+                                      ),
+                                    ),
+                                    style: TextStyle(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary),
+                                  ),
+                                  SizedBox(height: 16),
+                                  TextFormField(
+                                    validator: (value) {
+                                      // add email validation
+                                      if (value == null || value.isEmpty) {
+                                        return 'Please enter some text';
+                                      }
+
+                                      bool emailValid = RegExp(
+                                              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                          .hasMatch(value);
+                                      if (!emailValid) {
+                                        return 'Please enter a valid email';
+                                      }
+
+                                      return null;
+                                    },
+                                    decoration: InputDecoration(
+                                      labelText: 'Email',
+                                      hintText: 'Enter your email',
+                                      prefixIcon: Icon(
+                                        Icons.email_outlined,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary,
+                                      ),
+                                      border: OutlineInputBorder(),
+                                      labelStyle: TextStyle(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primary),
+
+                                      // Customize the border color
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary),
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary),
+                                      ),
+                                      contentPadding: EdgeInsets.symmetric(
+                                        vertical:
+                                            15.0, // Adjust the vertical padding as needed
+                                      ),
+                                    ),
+                                    style: TextStyle(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary),
+                                  ),
+                                  SizedBox(height: 16),
+                                  TextFormField(
+                                    style: TextStyle(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary),
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'Please enter some text';
+                                      }
+
+                                      if (value.length < 6) {
+                                        return 'Password must be at least 6 characters';
+                                      }
+                                      return null;
+                                    },
+                                    obscureText: !_isPasswordVisible,
+                                    decoration: InputDecoration(
+                                      labelText: 'Password',
+                                      hintText: 'Enter your password',
+                                      prefixIcon: Icon(
+                                        Icons.lock_outline_rounded,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary,
+                                      ),
+                                      border: const OutlineInputBorder(),
+                                      suffixIcon: IconButton(
+                                        icon: Icon(
+                                          _isPasswordVisible
+                                              ? Icons.visibility_off
+                                              : Icons.visibility,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primary,
+                                        ),
+                                        onPressed: () {
+                                          setState(() {
+                                            _isPasswordVisible =
+                                                !_isPasswordVisible;
+                                          });
+                                        },
+                                      ),
+                                      labelStyle: TextStyle(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primary),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary),
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary),
+                                      ),
+                                      contentPadding: EdgeInsets.symmetric(
+                                        vertical:
+                                            15.0, // Adjust the vertical padding as needed
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(height: 16),
+                                  TextFormField(
+                                    style: TextStyle(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary),
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'Please enter some text';
+                                      }
+
+                                      if (value.length < 6) {
+                                        return 'Password must be at least 6 characters';
+                                      }
+                                      return null;
+                                    },
+                                    obscureText: !_isPasswordVisible,
+                                    decoration: InputDecoration(
+                                      labelText: ' Repeat Password',
+                                      hintText: 'Enter your  repeat password',
+                                      prefixIcon: Icon(
+                                        Icons.lock_outline_rounded,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary,
+                                      ),
+                                      border: const OutlineInputBorder(),
+                                      suffixIcon: IconButton(
+                                        icon: Icon(
+                                          _isPasswordVisible
+                                              ? Icons.visibility_off
+                                              : Icons.visibility,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primary,
+                                        ),
+                                        onPressed: () {
+                                          setState(() {
+                                            _isPasswordVisible =
+                                                !_isPasswordVisible;
+                                          });
+                                        },
+                                      ),
+                                      labelStyle: TextStyle(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primary),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary),
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary),
+                                      ),
+                                      contentPadding: EdgeInsets.symmetric(
+                                        vertical:
+                                            15.0, // Adjust the vertical padding as needed
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(height: 16),
+                                  SizedBox(
+                                    width: double.infinity,
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor:
+                                            Color.fromARGB(255, 12, 85, 155),
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(4)),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsets.all(10.0),
+                                        child: Text(
+                                          'CREATE',
+                                          style: TextStyle(
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .primary,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ),
+                                      onPressed: () {
+                                        if (_formKey.currentState?.validate() ??
+                                            false) {
+                                          /// do something
+                                          if (_currentPage < 1) {
+                                            Navigator.push(
+                                              context,
+                                              PageRouteBuilder(
+                                                pageBuilder: (context,
+                                                        animation,
+                                                        secondaryAnimation) =>
+                                                    Dashboard(),
+                                                transitionsBuilder: (context,
+                                                    animation,
+                                                    secondaryAnimation,
+                                                    child) {
+                                                  var begin = Offset(-1.0,
+                                                      0); // Change the begin offset to start from the left
+                                                  var end = Offset.zero;
+                                                  var tween = Tween(
+                                                      begin: begin, end: end);
+                                                  var offsetAnimation =
+                                                      animation.drive(tween);
+
+                                                  return SlideTransition(
+                                                    position: offsetAnimation,
+                                                    child: child,
+                                                  );
+                                                },
+                                              ),
+                                            );
+                                          }
+                                        }
+                                      },
+                                    ),
+                                  ),
+                                  SizedBox(height: 16),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        "You have an account?",
+                                        style: TextStyle(
+                                          decorationThickness: 2.0,
+                                          color: Color.fromARGB(255, 217, 217,
+                                              217), // Set the text color
+                                          // Set the text color
+                                          fontFamily:
+                                              'Poppins', // Set the font family
+                                          fontWeight: FontWeight
+                                              .w500, // Set the font weight
+                                          fontSize: 13,
+
+                                          // Set the font size
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          _toggleImage();
+
+                                          if (_currentPage >= 1) {
+                                            _pageController.previousPage(
+                                              duration:
+                                                  Duration(milliseconds: 500),
+                                              curve: Curves.easeInOut,
+                                            );
+                                          }
+                                        },
+                                        child: Text(
+                                          "Login",
+                                          style: TextStyle(
+                                            decoration:
+                                                TextDecoration.underline,
+                                            decorationThickness: 2.0,
+                                            color: Color.fromARGB(
+                                                255, 0, 122, 204),
+                                            // Set the text color
+                                            fontFamily:
+                                                'Poppins', // Set the font family
+                                            fontWeight: FontWeight
+                                                .w500, // Set the font weight
+                                            fontSize: 13,
+
+                                            // Set the font size
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ],
               ),

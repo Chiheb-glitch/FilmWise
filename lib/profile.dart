@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -122,53 +124,47 @@ class _ProfilePageState extends State<ProfilePage>
                               top: 0,
                               child: Container(
                                 width: MediaQuery.of(context).size.width,
-                                color: Color.fromARGB(148, 37, 36, 37),
+                                color: Color.fromARGB(90, 37, 36, 37),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Container(
-                                      margin: EdgeInsets.all(5),
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color:
-                                            Color.fromARGB(83, 158, 158, 158),
-                                      ),
+                                      margin: EdgeInsets.only(bottom: 7),
                                       child: IconButton(
-                                          onPressed: () {
-                                            Navigator.push(
-                                              context,
-                                              PageRouteBuilder(
-                                                pageBuilder: (context,
-                                                        animation,
-                                                        secondaryAnimation) =>
-                                                    Dashboard(),
-                                                transitionsBuilder: (context,
-                                                    animation,
-                                                    secondaryAnimation,
-                                                    child) {
-                                                  var begin = Offset(-1.0,
-                                                      0); // Change the begin offset to start from the left
-                                                  var end = Offset.zero;
-                                                  var tween = Tween(
-                                                      begin: begin, end: end);
-                                                  var offsetAnimation =
-                                                      animation.drive(tween);
+                                        onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            PageRouteBuilder(
+                                              pageBuilder: (context, animation,
+                                                      secondaryAnimation) =>
+                                                  Dashboard(),
+                                              transitionsBuilder: (context,
+                                                  animation,
+                                                  secondaryAnimation,
+                                                  child) {
+                                                var begin = Offset(-1.0,
+                                                    0); // Change the begin offset to start from the left
+                                                var end = Offset.zero;
+                                                var tween = Tween(
+                                                    begin: begin, end: end);
+                                                var offsetAnimation =
+                                                    animation.drive(tween);
 
-                                                  return SlideTransition(
-                                                    position: offsetAnimation,
-                                                    child: child,
-                                                  );
-                                                },
-                                              ),
-                                            );
-                                          },
-                                          icon: Icon(
-                                            Icons.clear,
+                                                return SlideTransition(
+                                                  position: offsetAnimation,
+                                                  child: child,
+                                                );
+                                              },
+                                            ),
+                                          );
+                                        },
+                                        icon: Icon(Icons.arrow_back_ios,
+                                            size: 35,
                                             color: Theme.of(context)
                                                 .colorScheme
-                                                .primary,
-                                          )),
+                                                .primary),
+                                      ),
                                     ),
                                     Container(
                                       margin: EdgeInsets.all(5),
@@ -194,16 +190,7 @@ class _ProfilePageState extends State<ProfilePage>
                               child: Container(
                                 width: MediaQuery.of(context).size.width,
                                 decoration: BoxDecoration(
-                                  color: Colors.amber,
                                   borderRadius: BorderRadius.circular(30.0),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.5),
-                                      spreadRadius: 2,
-                                      blurRadius: 5,
-                                      offset: Offset(0, 2),
-                                    ),
-                                  ],
                                 ),
                                 child: Stack(
                                   children: [
@@ -213,7 +200,16 @@ class _ProfilePageState extends State<ProfilePage>
                                             .colorScheme
                                             .background,
                                         borderRadius:
-                                            BorderRadius.circular(30.0),
+                                            BorderRadius.circular(50.0),
+                                        border: Border.all(
+                                          color: const Color.fromARGB(
+                                              255,
+                                              74,
+                                              83,
+                                              95), // Set the border color here
+                                          width:
+                                              1.0, // Set the border width here
+                                        ),
                                         boxShadow: [
                                           BoxShadow(
                                             color: Colors.grey.withOpacity(0.5),
@@ -224,7 +220,7 @@ class _ProfilePageState extends State<ProfilePage>
                                         ],
                                       ),
                                       height: 500,
-                                      margin: EdgeInsets.only(top: 60),
+                                      margin: EdgeInsets.only(top: 50),
                                       padding: EdgeInsets.all(40),
                                       child: Column(
                                         crossAxisAlignment:
@@ -265,212 +261,18 @@ class _ProfilePageState extends State<ProfilePage>
                                                       MainAxisAlignment
                                                           .spaceBetween,
                                                   children: [
-                                                    ElevatedButton(
-                                                      style: ElevatedButton
-                                                          .styleFrom(
-                                                        backgroundColor:
-                                                            Color.fromARGB(255,
-                                                                26, 40, 50),
-                                                        shape:
-                                                            RoundedRectangleBorder(
-                                                                side:
-                                                                    BorderSide(
-                                                                  // Add this to set border color and width
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .colorScheme
-                                                                      .primary, // Replace with your desired border color
-                                                                  width:
-                                                                      1.0, // Replace with your desired border width
-                                                                ),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            20)),
-                                                      ),
-                                                      child: Padding(
-                                                        padding: EdgeInsets.all(
-                                                            (MediaQuery.of(context)
-                                                                        .size
-                                                                        .width *
-                                                                    10.0) /
-                                                                700),
-                                                        child: Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceBetween,
-                                                          children: [
-                                                            Icon(
-                                                              BootstrapIcons
-                                                                  .envelope_fill,
-                                                              color: Theme.of(
-                                                                      context)
-                                                                  .colorScheme
-                                                                  .primary,
-                                                            ),
-                                                            SizedBox(
-                                                              width: (MediaQuery.of(
-                                                                              context)
-                                                                          .size
-                                                                          .width *
-                                                                      8) /
-                                                                  500,
-                                                            ),
-                                                            Text(
-                                                              'Chat',
-                                                              style: TextStyle(
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .colorScheme
-                                                                      .primary,
-                                                                  fontSize: (MediaQuery.of(context)
-                                                                              .size
-                                                                              .width *
-                                                                          16) /
-                                                                      500,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w200),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      onPressed: () {},
-                                                    ),
-                                                    ElevatedButton(
-                                                      style: ElevatedButton
-                                                          .styleFrom(
-                                                        backgroundColor:
-                                                            Color.fromARGB(255,
-                                                                26, 40, 50),
-                                                        shape:
-                                                            RoundedRectangleBorder(
-                                                                side:
-                                                                    BorderSide(
-                                                                  // Add this to set border color and width
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .colorScheme
-                                                                      .primary, // Replace with your desired border color
-                                                                  width:
-                                                                      1.0, // Replace with your desired border width
-                                                                ),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            20)),
-                                                      ),
-                                                      child: Padding(
-                                                        padding: EdgeInsets.all(
-                                                            (MediaQuery.of(context)
-                                                                        .size
-                                                                        .width *
-                                                                    10.0) /
-                                                                700),
-                                                        child: Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceBetween,
-                                                          children: [
-                                                            Icon(
-                                                              BootstrapIcons
-                                                                  .person_fill_add,
-                                                              color: Theme.of(
-                                                                      context)
-                                                                  .colorScheme
-                                                                  .primary,
-                                                            ),
-                                                            SizedBox(
-                                                              width: 8,
-                                                            ),
-                                                            Text(
-                                                              'Follow',
-                                                              style: TextStyle(
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .colorScheme
-                                                                      .primary,
-                                                                  fontSize: (MediaQuery.of(context)
-                                                                              .size
-                                                                              .width *
-                                                                          16) /
-                                                                      500,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w200),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      onPressed: () {},
-                                                    ),
-                                                    ElevatedButton(
-                                                      style: ElevatedButton
-                                                          .styleFrom(
-                                                        backgroundColor:
-                                                            Color.fromARGB(255,
-                                                                26, 40, 50),
-                                                        shape:
-                                                            RoundedRectangleBorder(
-                                                                side:
-                                                                    BorderSide(
-                                                                  // Add this to set border color and width
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .colorScheme
-                                                                      .primary, // Replace with your desired border color
-                                                                  width:
-                                                                      1.0, // Replace with your desired border width
-                                                                ),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            20)),
-                                                      ),
-                                                      child: Padding(
-                                                        padding: EdgeInsets.all(
-                                                            (MediaQuery.of(context)
-                                                                        .size
-                                                                        .width *
-                                                                    10.0) /
-                                                                700),
-                                                        child: Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceBetween,
-                                                          children: [
-                                                            Icon(
-                                                              BootstrapIcons
-                                                                  .send_plus,
-                                                              color: Theme.of(
-                                                                      context)
-                                                                  .colorScheme
-                                                                  .primary,
-                                                            ),
-                                                            SizedBox(
-                                                              width: 8,
-                                                            ),
-                                                            Text(
-                                                              'Send',
-                                                              style: TextStyle(
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .colorScheme
-                                                                      .primary,
-                                                                  fontSize: (MediaQuery.of(context)
-                                                                              .size
-                                                                              .width *
-                                                                          16) /
-                                                                      500,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w200),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      onPressed: () {},
-                                                    ),
+                                                    porfile_icon(
+                                                        icons: BootstrapIcons
+                                                            .envelope_fill,
+                                                        text: "chat"),
+                                                    porfile_icon(
+                                                        icons: BootstrapIcons
+                                                            .person_fill_add,
+                                                        text: "Follow"),
+                                                    porfile_icon(
+                                                        icons: BootstrapIcons
+                                                            .send_plus,
+                                                        text: "Send"),
                                                   ],
                                                 )
                                               : SizedBox(),
@@ -495,66 +297,29 @@ class _ProfilePageState extends State<ProfilePage>
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
+                                          profile_ff(
+                                            text: "Followrs",
+                                            price: "40",
+                                          ),
                                           Container(
-                                            padding: EdgeInsets.all(10),
-                                            width: 90,
+                                            width: 95.0,
+                                            height: 95.0,
                                             decoration: BoxDecoration(
-                                              color: Color.fromARGB(
-                                                  255, 26, 31, 41),
-                                              borderRadius:
-                                                  BorderRadius.circular(20.0),
+                                              shape: BoxShape.circle,
+                                              border: Border.all(
+                                                width: 1.0,
+                                                color: Color.fromARGB(
+                                                    255, 74, 83, 95),
+                                              ),
                                               boxShadow: [
                                                 BoxShadow(
                                                   color: Colors.grey
-                                                      .withOpacity(0.5),
+                                                      .withOpacity(0.1),
                                                   spreadRadius: 2,
                                                   blurRadius: 5,
                                                   offset: Offset(0, 2),
                                                 ),
                                               ],
-                                            ),
-                                            child: Column(
-                                              children: [
-                                                Text(
-                                                  'Followers',
-                                                  style: TextStyle(
-                                                    color: Theme.of(context)
-                                                        .colorScheme
-                                                        .primary, // Set the text color
-                                                    fontFamily:
-                                                        'Poppins', // Set the font family
-                                                    fontWeight: FontWeight
-                                                        .normal, // Set the font weight
-                                                    fontSize:
-                                                        15, // Set the font size
-                                                  ),
-                                                ),
-                                                Text(
-                                                  '50',
-                                                  style: TextStyle(
-                                                    color: Theme.of(context)
-                                                        .colorScheme
-                                                        .primary, // Set the text color
-                                                    fontFamily:
-                                                        'Poppins', // Set the font family
-                                                    fontWeight: FontWeight
-                                                        .normal, // Set the font weight
-                                                    fontSize:
-                                                        15, // Set the font size
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Container(
-                                            width: 100.0,
-                                            height: 100.0,
-                                            decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              border: Border.all(
-                                                width: 2.0,
-                                                color: Colors.white,
-                                              ),
                                               image: DecorationImage(
                                                 image: NetworkImage(
                                                   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0aEjACt2jj8i3I0n3u2rHnWrk9igVej4LTA&usqp=CAU',
@@ -563,56 +328,9 @@ class _ProfilePageState extends State<ProfilePage>
                                               ),
                                             ),
                                           ),
-                                          Container(
-                                            padding: EdgeInsets.all(10),
-                                            width: 90,
-                                            decoration: BoxDecoration(
-                                              color: Color.fromARGB(
-                                                  255, 26, 31, 41),
-                                              borderRadius:
-                                                  BorderRadius.circular(20.0),
-                                              boxShadow: [
-                                                BoxShadow(
-                                                  color: Colors.grey
-                                                      .withOpacity(0.5),
-                                                  spreadRadius: 2,
-                                                  blurRadius: 5,
-                                                  offset: Offset(0, 2),
-                                                ),
-                                              ],
-                                            ),
-                                            child: Column(
-                                              children: [
-                                                Text(
-                                                  'Following',
-                                                  style: TextStyle(
-                                                    color: Theme.of(context)
-                                                        .colorScheme
-                                                        .primary, // Set the text color
-                                                    fontFamily:
-                                                        'Poppins', // Set the font family
-                                                    fontWeight: FontWeight
-                                                        .normal, // Set the font weight
-                                                    fontSize:
-                                                        15, // Set the font size
-                                                  ),
-                                                ),
-                                                Text(
-                                                  '50',
-                                                  style: TextStyle(
-                                                    color: Theme.of(context)
-                                                        .colorScheme
-                                                        .primary, // Set the text color
-                                                    fontFamily:
-                                                        'Poppins', // Set the font family
-                                                    fontWeight: FontWeight
-                                                        .normal, // Set the font weight
-                                                    fontSize:
-                                                        15, // Set the font size
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
+                                          profile_ff(
+                                            text: "Following",
+                                            price: "40",
                                           ),
                                         ],
                                       ),
@@ -625,90 +343,202 @@ class _ProfilePageState extends State<ProfilePage>
                         ),
                       ),
                       Container(
-                        width: MediaQuery.of(context).size.width * 0.9,
-                        padding: EdgeInsets.all(16.0),
                         decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.background,
-                          borderRadius: BorderRadius.circular(30.0),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              spreadRadius: 2,
-                              blurRadius: 5,
-                              offset: Offset(0, 2),
+                          color: Color.fromARGB(255, 26, 40, 50),
+
+                          borderRadius: BorderRadius.circular(
+                              20.0), // Set the radius here
+                          border: Border.all(
+                            color: Theme.of(context)
+                                .colorScheme
+                                .primary, // Set the border color here
+                            width: 1.0, // Set the border width here
+                          ),
+                        ),
+                        margin: EdgeInsets.fromLTRB(
+                            (MediaQuery.of(context).size.width * 170.0) / 700,
+                            (MediaQuery.of(context).size.width * 10.0) / 700,
+                            (MediaQuery.of(context).size.width * 170.0) / 700,
+                            (MediaQuery.of(context).size.width * 20.0) / 700),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.wine_bar,
+                              color: Color.fromARGB(255, 238, 255, 4),
+                              size: 40,
+                            ),
+                            Text(
+                              'Achievements',
+                              style: TextStyle(
+                                color: Color.fromARGB(
+                                    255, 193, 192, 192), // Set the text color
+                                fontFamily: 'Poppins', // Set the font family
+                                fontWeight:
+                                    FontWeight.normal, // Set the font weight
+                                fontSize: 20, // Set the font size
+                              ),
                             ),
                           ],
                         ),
-                        child: Column(children: [
-                          Row(
+                      ),
+                      Container(
+                        child: SizedBox(
+                          height: 70,
+                          width: MediaQuery.of(context).size.width * 0.9,
+                          child: Stack(
+                            fit: StackFit.expand,
                             children: [
-                              Icon(
-                                Icons.wine_bar,
-                                color: Color.fromARGB(255, 129, 12, 168),
-                                size: 40,
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.9,
+                                decoration: BoxDecoration(
+                                  color: Color.fromARGB(0, 8, 78,
+                                      128), // Required for the blur effect
+                                  borderRadius: BorderRadius.circular(30.0),
+                                ),
+                                child: Column(children: [
+                                  Stack(
+                                    children: [
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          color: const Color.fromARGB(
+                                              255,
+                                              8,
+                                              79,
+                                              128), // Required for the blur effect
+                                          borderRadius:
+                                              BorderRadius.circular(30.0),
+                                        ),
+                                        margin: EdgeInsets.all(8),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            SizedBox(
+                                              width: 60,
+                                            ),
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  'ROOKIE CINEPHILE',
+                                                  style: TextStyle(
+                                                    color: Theme.of(context)
+                                                        .colorScheme
+                                                        .primary, // Set the text color
+                                                    fontFamily:
+                                                        'Poppins', // Set the font family
+                                                    fontWeight: FontWeight
+                                                        .w800, // Set the font weight
+                                                    fontSize:
+                                                        18, // Set the font size
+                                                  ),
+                                                ),
+                                                Text(
+                                                  'Watched More Than 250 Films',
+                                                  style: TextStyle(
+                                                    color: Theme.of(context)
+                                                        .colorScheme
+                                                        .primary, // Set the text color
+                                                    fontFamily:
+                                                        'Poppins', // Set the font family
+                                                    fontWeight: FontWeight
+                                                        .w400, // Set the font weight
+                                                    fontSize:
+                                                        15, // Set the font size
+                                                  ),
+                                                ),
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      Positioned(
+                                        top: 0,
+                                        left: 9,
+                                        child: Container(
+                                          width: 50,
+                                          height: 50,
+                                          decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                              image: AssetImage(
+                                                'assets/joker_without.png',
+                                              ),
+                                              fit: BoxFit.contain,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                ]),
                               ),
-                              Text(
-                                'Achievements',
-                                style: TextStyle(
-                                  color: Color.fromARGB(
-                                      255, 193, 192, 192), // Set the text color
-                                  fontFamily: 'Poppins', // Set the font family
-                                  fontWeight:
-                                      FontWeight.normal, // Set the font weight
-                                  fontSize: 25, // Set the font size
+                              Container(
+                                child: ClipRRect(
+                                  // Clip it cleanly.
+                                  child: BackdropFilter(
+                                    filter: ImageFilter.blur(
+                                        sigmaX: 1.5, sigmaY: 1),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        // Required for the blur effect
+                                        borderRadius:
+                                            BorderRadius.circular(30.0),
+                                        color: Colors.grey.withOpacity(0.1),
+                                      ),
+                                      padding: EdgeInsets.all(16.0),
+                                      alignment: Alignment.center,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                right: 14,
+                                child: Container(
+                                  height: 65,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor:
+                                              Color.fromARGB(255, 26, 40, 50),
+                                          shape: RoundedRectangleBorder(
+                                              side: BorderSide(
+                                                // Add this to set border color and width
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .primary, // Replace with your desired border color
+                                                width:
+                                                    1.0, // Replace with your desired border width
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(20)),
+                                        ),
+                                        child: Padding(
+                                          padding: EdgeInsets.all(5.0),
+                                          child: Text(
+                                            'Claim',
+                                            style: TextStyle(
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .primary,
+                                                fontSize: 10,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                        onPressed: () {},
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                             ],
                           ),
-                          SizedBox(
-                            height: 15,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Image.asset(
-                                'assets/ROOKIE CINEPHILE.png',
-                                height: 50,
-                                width: 50,
-                              ),
-                              SizedBox(
-                                width: 15,
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'ROOKIE CINEPHILE',
-                                    style: TextStyle(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .primary, // Set the text color
-                                      fontFamily:
-                                          'Poppins', // Set the font family
-                                      fontWeight: FontWeight
-                                          .w800, // Set the font weight
-                                      fontSize: 18, // Set the font size
-                                    ),
-                                  ),
-                                  Text(
-                                    'Watched More Than 250 Films',
-                                    style: TextStyle(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .primary, // Set the text color
-                                      fontFamily:
-                                          'Poppins', // Set the font family
-                                      fontWeight: FontWeight
-                                          .w400, // Set the font weight
-                                      fontSize: 15, // Set the font size
-                                    ),
-                                  ),
-                                ],
-                              )
-                            ],
-                          )
-                        ]),
+                        ),
                       ),
                       SizedBox(
                         height: 30,
@@ -892,6 +722,128 @@ class TabsIcon extends StatelessWidget {
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class porfile_icon extends StatelessWidget {
+  final Color color;
+  final IconData icons;
+  final String text;
+
+  const porfile_icon({
+    Key? key,
+    this.color = Colors.white,
+    required this.icons,
+    required this.text,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Color.fromARGB(255, 26, 40, 50),
+        shape: RoundedRectangleBorder(
+            side: BorderSide(
+              // Add this to set border color and width
+              color: Theme.of(context)
+                  .colorScheme
+                  .primary, // Replace with your desired border color
+              width: 1.0, // Replace with your desired border width
+            ),
+            borderRadius: BorderRadius.circular(20)),
+      ),
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(
+            (MediaQuery.of(context).size.width * 1.0) / 700,
+            (MediaQuery.of(context).size.width * 10.0) / 700,
+            (MediaQuery.of(context).size.width * 1.0) / 700,
+            (MediaQuery.of(context).size.width * 10.0) / 700),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Icon(
+              icons,
+              color: Theme.of(context).colorScheme.primary,
+              size: 20,
+            ),
+            SizedBox(
+              width: 8,
+            ),
+            Text(
+              text,
+              style: TextStyle(
+                  color: Theme.of(context).colorScheme.primary,
+                  fontSize: (MediaQuery.of(context).size.width * 12) / 500,
+                  fontWeight: FontWeight.w200),
+            ),
+          ],
+        ),
+      ),
+      onPressed: () {},
+    );
+  }
+}
+
+class profile_ff extends StatelessWidget {
+  final Color color;
+
+  final String text;
+  final String price;
+
+  const profile_ff({
+    Key? key,
+    this.color = Colors.white,
+    required this.text,
+    required this.price,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {},
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Color.fromARGB(255, 26, 40, 50),
+        shape: RoundedRectangleBorder(
+            side: BorderSide(
+              // Add this to set border color and width
+              color: const Color.fromARGB(
+                  255, 74, 83, 95), // Replace with your desired border color
+              width: 1.0, // Replace with your desired border width
+            ),
+            borderRadius: BorderRadius.circular(15)),
+      ),
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(
+            (MediaQuery.of(context).size.width * 0) / 700,
+            (MediaQuery.of(context).size.width * 5.0) / 700,
+            (MediaQuery.of(context).size.width * 0) / 700,
+            (MediaQuery.of(context).size.width * 5.0) / 700),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Followers',
+              style: TextStyle(
+                color: Color.fromARGB(199, 217, 217, 217), // Set the text color
+                fontFamily: 'Poppins', // Set the font family
+                fontWeight: FontWeight.normal, // Set the font weight
+                fontSize: 12, // Set the font size
+              ),
+            ),
+            Text(
+              '50',
+              style: TextStyle(
+                color:
+                    Theme.of(context).colorScheme.primary, // Set the text color
+                fontFamily: 'Poppins', // Set the font family
+                fontWeight: FontWeight.w500, // Set the font weight
+                fontSize: 10, // Set the font size
+              ),
+            ),
+          ],
         ),
       ),
     );
